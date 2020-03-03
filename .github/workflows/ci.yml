@@ -34,16 +34,20 @@ jobs:
     - run: |
         python --version
     # start virtual display driver
-    - name: Start virtual display driver
+    - name: Start virtual display driver & Test (!windows)
       run: |
         disp=:99
         screen=0
         geom=640x480x24
         exec Xvfb $disp -screen $screen $geom 2>/tmp/Xvfb.log &
         export DISPLAY=:99
-    # run script
-    - name: Run script
       env:
         DISPLAY: :99
       run: |
         python tkinter_issue.py
+      if: not contains(matrix.os-name, 'windows')
+    - name: Start virtual display driver & Test (windows)
+      uses: GabrielBB/xvfb-action@v1
+      run: |
+        python tkinter_issue.py
+      if: contains(matrix.os-name, 'windows')
