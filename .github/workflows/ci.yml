@@ -1,0 +1,39 @@
+# workflow name
+name: Test & Build
+
+# fire on
+on: [ push, pull_request ]
+
+# stuff to do
+jobs:
+  # Install & Build
+  #  Set up Environment
+  # Build
+  #  Run tkinter_issue.py
+  install-build:
+    name: Install/Build
+    # cycle through os list
+    runs-on: ${{ matrix.os-name }}
+
+    # VM Settings
+    #  os & python versions
+    strategy:
+      matrix:
+        os-name: [ ubuntu-latest, ubuntu-16.04, macOS-latest, windows-latest ]
+        python-version: [ 3.7 ]
+    steps:
+    # checkout commit
+    - name: Checkout commit
+      uses: actions/checkout@v1
+    # install python
+    - name: Install python
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+        architecture: "x64"
+    - run: |
+        python --version
+    # run script
+    - name: Run script
+    - run: |
+        py tkinter_issue.py
