@@ -43,5 +43,7 @@ jobs:
         export DISPLAY=:99
     # run script
     - name: Run script
+      env:
+        DISPLAY: :99
       run: |
         python tkinter_issue.py
