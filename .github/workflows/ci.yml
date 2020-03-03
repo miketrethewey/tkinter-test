@@ -44,7 +44,7 @@ jobs:
         exec Xvfb $disp -screen $screen $geom 2>/tmp/Xvfb.log &
         export DISPLAY=:99
         python tkinter_issue.py
-      if: not contains(matrix.os-name, 'windows')
+      if: ! contains(matrix.os-name, 'windows')
     - name: Start virtual display driver & Test (windows)
       uses: GabrielBB/xvfb-action@v1
       with:
