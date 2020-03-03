@@ -48,6 +48,6 @@ jobs:
       if: not contains(matrix.os-name, 'windows')
     - name: Start virtual display driver & Test (windows)
       uses: GabrielBB/xvfb-action@v1
-      run: |
-        python tkinter_issue.py
+      with:
+        run: python tkinter_issue.py
       if: contains(matrix.os-name, 'windows')
