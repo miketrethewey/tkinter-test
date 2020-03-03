@@ -35,5 +35,5 @@ jobs:
         python --version
     # run script
     - name: Run script
-    - run: |
+      run: |
         py tkinter_issue.py
