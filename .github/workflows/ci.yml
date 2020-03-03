@@ -36,4 +36,4 @@ jobs:
     # run script
     - name: Run script
       run: |
-        py tkinter_issue.py
+        python tkinter_issue.py
